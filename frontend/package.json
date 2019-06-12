@@ -5,6 +5,8 @@
   "scripts": {
     "serve_admin": "cross-env PAGE_ENV=admin vue-cli-service serve",
     "build_admin": "cross-env PAGE_ENV=admin vue-cli-service build",
+    "serve_home": "cross-env PAGE_ENV=home vue-cli-service serve",
+    "build_home": "cross-env PAGE_ENV=home vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
