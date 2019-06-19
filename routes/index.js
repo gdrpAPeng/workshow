@@ -1,31 +1,16 @@
-const router = require('koa-router')()
+const router = require('koa-router')({
+  prefix: '/api'
+})
 
-const db = require('../utils/query')
+const homeRouter = require('./home')
+const adminRouter = require('./admin')
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+  console.log('api')
 })
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
+router.use(homeRouter.routes(), homeRouter.allowedMethods())
+router.use(adminRouter.routes(), adminRouter.allowedMethods())
 
-router.get('/json', async (ctx, next) => {
-  // console.log(ctx.request.query)
-  // ctx.body = {
-  //   title: 'koa2 json'
-  // }
-  // ctx.body = ctx.request.query
-  console.log('===')
-  console.log(db.query(`select * from t_user`))
-  ctx.body = db.query
-})
-
-router.post('/json', async (ctx, next) => {
-  // console.log(ctx)
-  ctx.body = ctx.request.body
-})
 
 module.exports = router
