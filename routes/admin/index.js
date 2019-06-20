@@ -5,6 +5,7 @@ const router = require("koa-router")({
 });
 
 const adminRouter = require('./admin')
+const userRouter = require('./user')
 
 const adminController = require('../../controllers/admin')
 
@@ -47,5 +48,6 @@ async function checkToken(token) {
 router.get("/", adminController.initModel);
 
 router.use(adminRouter.routes(), adminRouter.allowedMethods())
+router.use(userRouter.routes(), userRouter.allowedMethods())
 
 module.exports = router;

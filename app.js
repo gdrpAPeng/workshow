@@ -10,7 +10,10 @@ const index = require('./routes/index')
 onerror(app)
 
 app.use(koaBody({
-  multipart: true
+  multipart: true,
+  formidable: {
+    maxFieldsSize: 200 * 1024 * 1024
+  }
 }))
 app.use(json())
 app.use(require('koa-static')(__dirname + '/public'))
