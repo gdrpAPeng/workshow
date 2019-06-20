@@ -12,6 +12,11 @@ class Admin {
         await MatchModel.sync()
         await ProjectModel.sync()
 
+        await AdminModel.create({
+            adminAccount: 'APeng',
+            adminPassword: '123456'
+        })
+
         ctx.body = {
             status: 'success'
         }
