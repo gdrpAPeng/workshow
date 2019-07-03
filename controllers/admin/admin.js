@@ -12,13 +12,49 @@ class Admin {
                 adminPassword: md5(password)
             }
         })
+        if(!result) {
+            ctx.body = {
+                msg: '没有找到'
+            }
+            return;
+        } else {
+            let token = await jwt.generateToken({
+                id: result.id
+            })
+    
+            ctx.body = {
+                token
+            }
+        }
+    }
 
-        let token = await jwt.generateToken({
-            id: result.id
+    async getAdminList(ctx, next) {
+        const data = await AdminModel.findAll()
+        if(data.length == 0) {
+            ctx.body = {
+                msg: '暂无数据',
+                data: data
+            }
+        } else {
+            ctx.body = data
+        }
+        
+    }
+
+    async addOneAdmin(ctx) {
+        const { account, password } = ctx.request.body
+        const result = await AdminModel.create({
+            adminAccount: account,
+            adminPassword: md5(password)
         })
-
-        ctx.body = {
-            token
+        if(result) {
+            ctx.body = {
+                msg: '添加成功'
+            }
+        } else {
+            ctx.body = {
+                msg: '添加失败'
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ const CommentModel = require('../../models/comment')
 const MatchModel = require('../../models/match')
 const ProjectModel = require('../../models/project')
 
+const md5 = require('md5')
+
 class Admin {
     async initModel(ctx) {
         await AdminModel.sync()
@@ -14,7 +16,7 @@ class Admin {
 
         await AdminModel.create({
             adminAccount: 'APeng',
-            adminPassword: '123456'
+            adminPassword: md5('123456')
         })
 
         ctx.body = {
