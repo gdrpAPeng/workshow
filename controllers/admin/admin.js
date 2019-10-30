@@ -1,6 +1,7 @@
 const jwt = require('../../utils/jwt')
 const md5 = require('md5')
 const AdminModel = require('../../models/admin')
+const Base = require('../base')
 
 class Admin {
     async login(ctx, next) {
@@ -28,17 +29,9 @@ class Admin {
         }
     }
 
-    async getAdminList(ctx, next) {
+    async getAdminList(ctx, next) {   
         const data = await AdminModel.findAll()
-        if(data.length == 0) {
-            ctx.body = {
-                msg: '暂无数据',
-                data: data
-            }
-        } else {
-            ctx.body = data
-        }
-        
+        ctx.body = Base.formatResult(0, 'success', data) 
     }
 
     async addOneAdmin(ctx) {

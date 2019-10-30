@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const config = require("../config/config");
+const config = require("../config");
 
 function generateToken(data) {
   let token = jwt.sign(data, config.jwtPrivateKey, {

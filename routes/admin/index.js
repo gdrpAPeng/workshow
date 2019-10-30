@@ -14,7 +14,7 @@ router.use(async (ctx, next) => {
   console.log(ctx.request.url)
   const url = ctx.request.url
   const AccessToken = ctx.request.header.accesstoken
-  const ignoreArray = ['/api/admin/login']
+  const ignoreArray = ['/api/admin/login', '/api/admin/init']
   if(ignoreArray.indexOf(url) >= 0) {
     await next()
   } else {
@@ -45,7 +45,7 @@ async function checkToken(token) {
 }
 
 
-router.get("/", adminController.initModel);
+router.get("/init", adminController.initModel);
 
 router.use(adminRouter.routes(), adminRouter.allowedMethods())
 router.use(userRouter.routes(), userRouter.allowedMethods())

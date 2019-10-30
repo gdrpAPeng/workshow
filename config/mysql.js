@@ -2,7 +2,7 @@ const config = {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'test',
+    database: 'workshow',
     port: 3306,
     multipleStatements: true
 }

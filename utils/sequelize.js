@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
+const {host, database, user, password} = require('../config/mysql')
 
-const sequelize = new Sequelize('workshow', 'root', '', {
-    host: 'localhost',
+const sequelize = new Sequelize(database, user, password, {
+    host,
     dialect: 'mysql',
     timezone: '+08:00',
     pool: {

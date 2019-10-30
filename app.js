@@ -5,9 +5,13 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 
+const catchError = require('./middlewares/catcherror')
+
 const index = require('./routes/index')
 
 onerror(app)
+
+app.use(catchError)
 
 app.use(koaBody({
   multipart: true,
